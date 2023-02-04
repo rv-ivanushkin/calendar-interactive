@@ -19,6 +19,7 @@
     "@mui/styled-engine-sc": "^5.11.0",
     "@reduxjs/toolkit": "^1.9.1",
     "i18next": "^22.4.9",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.1.4",
