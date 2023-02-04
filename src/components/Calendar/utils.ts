@@ -1,11 +1,20 @@
 import { CALENDAR_GRID, MONTHS, MONTHS_COMPACT } from './constants'
 import { BaseNode } from './types'
 
+export const dateFormat = (date: Date) => date.toJSON().slice(0, 10)
+
 export const compareDate = (left: Date, right: Date) => {
   const parseLeft = new Date(left.toJSON().slice(0, 10))
   const parseRight = new Date(right.toJSON().slice(0, 10))
 
   return parseLeft.getTime() === parseRight.getTime()
+}
+
+export const getEndDateForForecast = (date: Date) => {
+  const nowWithoutTime = new Date(new Date().toJSON().slice(0, 10))
+  const dateWithoutTime = new Date(date.toJSON().slice(0, 10))
+
+  return dateWithoutTime < nowWithoutTime ? dateWithoutTime : nowWithoutTime
 }
 
 export const getMonthByDate = (date: Date, short = false): string => {
