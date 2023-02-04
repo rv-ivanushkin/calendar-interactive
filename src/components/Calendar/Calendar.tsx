@@ -3,8 +3,8 @@ import React, { useMemo } from 'react'
 import { CalendarBody } from './CalendarBody'
 import { CalendarHeader } from './CalendarHeader'
 import { CalendarContext } from './context'
+import { useDateWithForecast } from './hooks'
 import { CalendarContainer } from './style'
-import { getDates } from './utils'
 
 export interface CalendarProps extends PaperProps {
   selected: Date
@@ -16,23 +16,19 @@ export const Calendar = ({
   compact = false,
   ...paperProps
 }: CalendarProps) => {
-  const { datesAfter, datesInMoth, datesBefore } = getDates(selected)
-
-  const dates = datesBefore.concat(datesInMoth).concat(datesAfter)
-
   const contextData = useMemo(
     () => ({
       compact,
     }),
     [compact]
   )
-
+  const { dates, startDate, endDate } = useDateWithForecast(selected)
   return (
     /* eslint-disable react/jsx-props-no-spreading */
     <CalendarContext.Provider value={contextData}>
       <CalendarContainer {...paperProps}>
         <CalendarHeader />
-        <CalendarBody dates={dates} />
+        <CalendarBody dates={dates} startDate={startDate} endDate={endDate} />
       </CalendarContainer>
     </CalendarContext.Provider>
   )
