@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import {
   Calendar,
   CalendarContainer,
+  MONTHS,
   NavigationContainer,
   ShortCalendarContainer,
 } from 'src/components'
@@ -14,18 +15,24 @@ import {
   ToggleThemeMode,
 } from 'src/features'
 import { useAppSelector } from 'src/hooks'
-import { dateHumanFormat } from 'src/utils'
 import { LayoutsStyled } from './style'
 
 export const Layouts = () => {
   const themeModeSelect = useAppSelector(selectThemeMode)
   const dateSelect = useAppSelector(selectDate)
 
-  const [date, setDate] = useState(dateSelect)
-
-  const diff1Month = new Date(date.getFullYear(), date.getMonth() - 1)
-  const diff2Month = new Date(date.getFullYear(), date.getMonth() - 2)
-  const diff3Month = new Date(date.getFullYear(), date.getMonth() - 3)
+  const diff1Month = new Date(
+    dateSelect.getFullYear(),
+    dateSelect.getMonth() - 1
+  )
+  const diff2Month = new Date(
+    dateSelect.getFullYear(),
+    dateSelect.getMonth() - 2
+  )
+  const diff3Month = new Date(
+    dateSelect.getFullYear(),
+    dateSelect.getMonth() - 3
+  )
 
   const theme = useMemo(
     () =>
@@ -33,24 +40,29 @@ export const Layouts = () => {
         palette: {
           mode: themeModeSelect,
         },
+        shape: {
+          borderRadius: 10,
+        },
       }),
     [themeModeSelect]
   )
-
-  useEffect(() => {
-    setDate(dateSelect)
-  }, [dateSelect])
 
   return (
     <ThemeProvider theme={theme}>
       <LayoutsStyled>
         <ShortCalendarContainer>
-          <Typography color="primary">{dateHumanFormat(diff1Month)}</Typography>
-          <Calendar selected={diff1Month} compact />
-          <Typography color="primary">{dateHumanFormat(diff2Month)}</Typography>
-          <Calendar selected={diff2Month} compact />
-          <Typography color="primary">{dateHumanFormat(diff3Month)}</Typography>
-          <Calendar selected={diff3Month} compact />
+          <Typography>
+            {MONTHS[diff1Month.getMonth()]}, {diff1Month.getFullYear()}
+          </Typography>
+          <Calendar selected={diff1Month} compact elevation={0} />
+          <Typography>
+            {MONTHS[diff2Month.getMonth()]}, {diff2Month.getFullYear()}
+          </Typography>
+          <Calendar selected={diff2Month} compact elevation={0} />
+          <Typography>
+            {MONTHS[diff3Month.getMonth()]}, {diff3Month.getFullYear()}
+          </Typography>
+          <Calendar selected={diff3Month} compact elevation={0} />
         </ShortCalendarContainer>
         <CalendarContainer>
           <NavigationContainer>

@@ -6,10 +6,15 @@ import { dateSlice } from '../ToggleMonth'
 export const ButtonToday = () => {
   const dispatch = useActionCreators(dateSlice.actions)
 
-  const handleClick = () => dispatch.setDate(new Date())
+  const handleClick = () => dispatch.setDate(new Date().toJSON())
 
   return (
-    <Button color="primary" size="large" onClick={handleClick}>
+    <Button
+      color="primary"
+      variant="outlined"
+      size="small"
+      onClick={handleClick}
+    >
       <Typography variant="h6">Today</Typography>
     </Button>
   )

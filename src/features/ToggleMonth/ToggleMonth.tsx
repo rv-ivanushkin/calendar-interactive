@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined'
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined'
 import { useActionCreators, useAppSelector } from 'src/hooks'
-import { months } from 'src/components/Calendar/constants'
+import { MONTHS } from 'src/components/Calendar'
 import { IconButtonGroup, ToggleMonthStyled } from './style'
 import { dateSlice, selectDate } from './slice'
 
@@ -13,13 +13,13 @@ export const ToggleMonth = () => {
 
   const [date, setDate] = useState(dateSelect)
 
-  const month = months[date.getMonth()]
+  const month = MONTHS[date.getMonth()]
   const fullYear = date.getFullYear()
 
   const handlePrevMonth = () =>
-    dispatch.setDate(new Date(date.getFullYear(), date.getMonth() - 1))
+    dispatch.setDate(new Date(date.getFullYear(), date.getMonth() - 1).toJSON())
   const handleNextMonth = () =>
-    dispatch.setDate(new Date(date.getFullYear(), date.getMonth() + 1))
+    dispatch.setDate(new Date(date.getFullYear(), date.getMonth() + 1).toJSON())
 
   useEffect(() => {
     setDate(dateSelect)
