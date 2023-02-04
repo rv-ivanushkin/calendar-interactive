@@ -51,15 +51,15 @@ export const Layouts = () => {
     <ThemeProvider theme={theme}>
       <LayoutsStyled>
         <ShortCalendarContainer>
-          <Typography>
+          <Typography color="primary">
             {MONTHS[diff1Month.getMonth()]}, {diff1Month.getFullYear()}
           </Typography>
           <Calendar selected={diff1Month} compact elevation={0} />
-          <Typography>
+          <Typography color="primary">
             {MONTHS[diff2Month.getMonth()]}, {diff2Month.getFullYear()}
           </Typography>
           <Calendar selected={diff2Month} compact elevation={0} />
-          <Typography>
+          <Typography color="primary">
             {MONTHS[diff3Month.getMonth()]}, {diff3Month.getFullYear()}
           </Typography>
           <Calendar selected={diff3Month} compact elevation={0} />
