@@ -58,6 +58,7 @@ export const CalendarCellStyled = styled('div')<{ compact: boolean }>`
   border-right: 1px solid ${({ theme }) => theme.palette.divider};
 
   & button {
+    position: relative;
     border-radius: ${({ compact, theme }) =>
       compact ? 'inherit' : `${theme.shape.borderRadius}px`};
     min-width: auto;
@@ -65,4 +66,28 @@ export const CalendarCellStyled = styled('div')<{ compact: boolean }>`
     align-items: ${({ compact }) => (compact ? 'center' : 'start')};
     justify-content: ${({ compact }) => (compact ? 'center' : 'start')};
   }
+`
+export const ForecastStyled = styled('div')`
+  display: grid;
+  width: auto;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  justify-items: center;
+  align-items: start;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+`
+
+export const ForecastThermostatStyled = styled('div')`
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+`
+
+export const ForecastWithToParamsStyled = styled('div')`
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  color: ${({ theme }) => theme.palette.grey[500]};
 `
