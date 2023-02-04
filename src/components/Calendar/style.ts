@@ -58,6 +58,8 @@ export const CalendarCellStyled = styled('div')<{ compact: boolean }>`
   border-right: 1px solid ${({ theme }) => theme.palette.divider};
 
   & button {
+    border-radius: ${({ compact, theme }) =>
+      compact ? 'inherit' : `${theme.shape.borderRadius}px`};
     min-width: auto;
     display: grid;
     align-items: ${({ compact }) => (compact ? 'center' : 'start')};
