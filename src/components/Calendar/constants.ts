@@ -1,4 +1,4 @@
-export const daysInWeek = [
+export const DAYS_IN_WEEK = [
   'Monday',
   'Tuesday',
   'Wednesday',
@@ -8,9 +8,9 @@ export const daysInWeek = [
   'Sunday',
 ]
 
-export const daysInWeekShort = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+export const DAYS_IN_WEEK_COMPACT = DAYS_IN_WEEK.map((name) => name.slice(0, 3))
 
-export const months = [
+export const MONTHS = [
   'January',
   'February',
   'March',
@@ -24,19 +24,6 @@ export const months = [
   'November',
   'December',
 ]
-export const monthsShort = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-]
+export const MONTHS_COMPACT = MONTHS.map((name) => name.slice(0, 3))
 
-export const calendarGrid = 42
+export const CALENDAR_GRID = 42

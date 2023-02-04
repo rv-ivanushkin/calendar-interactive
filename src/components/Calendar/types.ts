@@ -1,13 +1,8 @@
-export type Event = []
-
-export interface CalendarNode {
+export interface BaseNode {
+  /** day of week */
   day: number
+  /** date of month */
   date: number
-  nativeDate: Date
-  events?: Event[]
-}
-
-export interface CalendarProps {
-  selected: Date
-  compact?: boolean
+  /** native Date object */
+  dateObject: Date
 }

@@ -1,70 +1,39 @@
-import { Typography } from '@mui/material'
-import React from 'react'
-import { daysInWeek, daysInWeekShort } from './constants'
-import {
-  CalendarWithTopPanel,
-  CalendarStyled,
-  DaysInWeekContainer,
-  CalendarNodeStyled,
-} from './style'
-import { CalendarProps } from './types'
-import { getDates, getMonthByDate } from './utils'
+import { PaperProps } from '@mui/material'
+import React, { useMemo } from 'react'
+import { CalendarBody } from './CalendarBody'
+import { CalendarHeader } from './CalendarHeader'
+import { CalendarContext } from './context'
+import { CalendarContainer } from './style'
+import { getDates } from './utils'
 
-export const Calendar = ({ selected, compact = false }: CalendarProps) => {
-  const [datesBefore, datesInMoth, datesAfter] = getDates(
-    (selected && selected) || new Date()
+export interface CalendarProps extends PaperProps {
+  selected: Date
+  compact?: boolean
+}
+
+export const Calendar = ({
+  selected,
+  compact = false,
+  ...paperProps
+}: CalendarProps) => {
+  const { datesAfter, datesInMoth, datesBefore } = getDates(selected)
+
+  const dates = datesBefore.concat(datesInMoth).concat(datesAfter)
+
+  const contextData = useMemo(
+    () => ({
+      compact,
+    }),
+    [compact]
   )
 
-  const labelsOfWeek = compact ? daysInWeekShort : daysInWeek
-  const typographyVariant = compact ? 'caption' : 'h6'
-  const elevation = compact ? 0 : 3
-
   return (
-    <CalendarWithTopPanel elevation={elevation}>
-      <DaysInWeekContainer>
-        {labelsOfWeek.map((day, index) => (
-          <Typography
-            key={`${day}_${index.toString()}`}
-            variant={typographyVariant}
-          >
-            {day}
-          </Typography>
-        ))}
-      </DaysInWeekContainer>
-      <CalendarStyled>
-        {datesBefore.map(({ date, nativeDate }, index) => (
-          <CalendarNodeStyled
-            key={`CalendarNodeS_${index.toString()}`}
-            compact={compact}
-          >
-            <Typography variant={typographyVariant}>
-              {index === 0 && !compact
-                ? `${date} ${getMonthByDate(nativeDate, true)}`
-                : date}
-            </Typography>
-          </CalendarNodeStyled>
-        ))}
-        {datesInMoth.map(({ date }, index) => (
-          <CalendarNodeStyled
-            key={`CalendarNodeS_${index.toString()}`}
-            compact={compact}
-          >
-            <Typography variant={typographyVariant}>{date}</Typography>
-          </CalendarNodeStyled>
-        ))}
-        {datesAfter.map(({ date, nativeDate }, index) => (
-          <CalendarNodeStyled
-            key={`CalendarNodeS_${index.toString()}`}
-            compact={compact}
-          >
-            <Typography variant={typographyVariant}>
-              {index === 0 && !compact
-                ? `${date} ${getMonthByDate(nativeDate, true)}`
-                : date}
-            </Typography>
-          </CalendarNodeStyled>
-        ))}
-      </CalendarStyled>
-    </CalendarWithTopPanel>
+    /* eslint-disable react/jsx-props-no-spreading */
+    <CalendarContext.Provider value={contextData}>
+      <CalendarContainer {...paperProps}>
+        <CalendarHeader />
+        <CalendarBody dates={dates} />
+      </CalendarContainer>
+    </CalendarContext.Provider>
   )
 }
