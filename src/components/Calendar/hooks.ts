@@ -1,14 +1,8 @@
 import { useContext, useEffect, useMemo, useState } from 'react'
-import { useAppDispatch } from 'src/hooks'
 import { CalendarContext } from './context'
-import { useGetForecastQuery, weatherForecastApi } from './service'
+import { useGetForecastQuery } from './service'
 import { BaseNode, BaseNodeWithForecast } from './types'
-import {
-  dateFormat,
-  dateFormat,
-  getDates,
-  getEndDateForForecast,
-} from './utils'
+import { dateFormat, getDates, getEndDateForForecast } from './utils'
 
 export const useDateWithoutForecast = (selected: Date) => {
   const { datesBefore, datesInMoth, datesAfter } = useMemo(
