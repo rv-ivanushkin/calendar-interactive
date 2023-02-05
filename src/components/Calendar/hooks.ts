@@ -30,6 +30,7 @@ export const useDateWithForecast = ({
 }: UseDateWithForecastProps) => {
   const now = new Date(new Date().toJSON().slice(0, 10))
   const { compact } = useContext(CalendarContext)
+
   const [skip, setSkip] = useState(true)
 
   const [datesWithForecast, setDatesWithForecast] = useState<
@@ -72,6 +73,5 @@ export const useDateWithForecast = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFetching, isError, forecast])
-
   return { datesWithForecast }
 }

@@ -1,6 +1,7 @@
 import { PaperProps } from '@mui/material'
 import React, { useMemo } from 'react'
 import { CalendarBody } from './CalendarBody'
+import { CalendarBodyForecast } from './CalendarBodyForecast'
 import { CalendarHeader } from './CalendarHeader'
 import { CalendarContext } from './context'
 import { useDateWithoutForecast } from './hooks'
@@ -28,9 +29,16 @@ export const Calendar = ({
     <CalendarContext.Provider value={contextData}>
       <CalendarContainer {...paperProps}>
         <CalendarHeader />
-        {dates.length && (
-          <CalendarBody dates={dates} startDate={startDate} endDate={endDate} />
-        )}
+        {dates.length &&
+          (compact ? (
+            <CalendarBody dates={dates} />
+          ) : (
+            <CalendarBodyForecast
+              dates={dates}
+              startDate={startDate}
+              endDate={endDate}
+            />
+          ))}
       </CalendarContainer>
     </CalendarContext.Provider>
   )
