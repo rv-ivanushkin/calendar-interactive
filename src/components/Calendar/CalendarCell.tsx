@@ -18,6 +18,7 @@ export interface CalendarCellProps {
 
 export const CalendarCell = ({ cell }: CalendarCellProps) => {
   const { compact } = useContext(CalendarContext)
+  const color = compact ? 'inherit' : undefined
   const typographyVariant = compact ? 'caption' : 'h6'
   const {
     date,
@@ -33,7 +34,7 @@ export const CalendarCell = ({ cell }: CalendarCellProps) => {
 
   return (
     <CalendarCellStyled compact={compact}>
-      <Button>
+      <Button color={color}>
         <Typography variant={typographyVariant}>{date}</Typography>
         <ForecastStyled>
           {sunrise && (
