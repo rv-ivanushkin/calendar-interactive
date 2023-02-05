@@ -15,6 +15,7 @@ import {
   ToggleThemeMode,
 } from 'src/features'
 import { useAppSelector } from 'src/hooks'
+import { defaultOptions } from 'src/theme'
 import { LayoutsStyled } from './style'
 
 export const Layouts = () => {
@@ -40,9 +41,7 @@ export const Layouts = () => {
         palette: {
           mode: themeModeSelect,
         },
-        shape: {
-          borderRadius: 10,
-        },
+        ...defaultOptions,
       }),
     [themeModeSelect]
   )
