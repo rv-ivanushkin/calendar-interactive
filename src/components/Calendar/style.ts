@@ -84,10 +84,13 @@ export const ForecastThermostatStyled = styled('div')`
   grid-template-rows: repeat(2, 1fr);
 `
 
-export const ForecastWithToParamsStyled = styled('div')`
+export const ForecastWithToParamsStyled = styled('div')<{
+  isTodayCell: boolean
+}>`
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   justify-items: center;
   align-items: center;
-  color: ${({ theme }) => theme.palette.grey[500]};
+  color: ${({ theme, isTodayCell }) =>
+    isTodayCell ? 'inherit' : theme.palette.grey[500]};
 `

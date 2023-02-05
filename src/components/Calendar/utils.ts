@@ -1,6 +1,12 @@
 import { CALENDAR_GRID, MONTHS, MONTHS_COMPACT } from './constants'
 import { BaseNode } from './types'
 
+export const datesEquals = (left: Date, right: Date) => {
+  const leftAsStr = `${left.getFullYear()}-${left.getMonth()}-${left.getDate()}`
+  const rightAsStr = `${right.getFullYear()}-${right.getMonth()}-${right.getDate()}`
+  return leftAsStr === rightAsStr
+}
+
 export const dateFormat = (date: Date) => date.toJSON().slice(0, 10)
 
 export const compareDate = (left: Date, right: Date) => {

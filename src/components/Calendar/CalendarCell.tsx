@@ -11,6 +11,7 @@ import {
   ForecastWithToParamsStyled,
 } from './style'
 import { BaseNodeWithForecast } from './types'
+import { dateFormat, datesEquals } from './utils'
 
 export interface CalendarCellProps {
   cell: BaseNodeWithForecast
@@ -20,6 +21,8 @@ export const CalendarCell = ({ cell }: CalendarCellProps) => {
   const { compact } = useContext(CalendarContext)
   const color = compact ? 'inherit' : undefined
   const typographyVariant = compact ? 'caption' : 'h6'
+  const isTodayCell = datesEquals(cell.dateObject, new Date())
+
   const {
     date,
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -34,11 +37,11 @@ export const CalendarCell = ({ cell }: CalendarCellProps) => {
 
   return (
     <CalendarCellStyled compact={compact}>
-      <Button color={color}>
+      <Button color={color} variant={(isTodayCell && 'contained') || undefined}>
         <Typography variant={typographyVariant}>{date}</Typography>
         <ForecastStyled>
           {sunrise && (
-            <ForecastWithToParamsStyled>
+            <ForecastWithToParamsStyled isTodayCell={isTodayCell}>
               <WbSunnyIcon fontSize="small" />
               <Typography variant="caption">
                 {new Date(Number(sunrise) * 1000).getHours()}
@@ -46,7 +49,7 @@ export const CalendarCell = ({ cell }: CalendarCellProps) => {
             </ForecastWithToParamsStyled>
           )}
           {sunset && (
-            <ForecastWithToParamsStyled>
+            <ForecastWithToParamsStyled isTodayCell={isTodayCell}>
               <DarkModeIcon fontSize="small" />
               <Typography variant="caption">
                 {new Date(Number(sunset) * 1000).getHours()}
@@ -54,13 +57,13 @@ export const CalendarCell = ({ cell }: CalendarCellProps) => {
             </ForecastWithToParamsStyled>
           )}
           {windspeed_10m_max && (
-            <ForecastWithToParamsStyled>
+            <ForecastWithToParamsStyled isTodayCell={isTodayCell}>
               <AirIcon fontSize="small" />
               <Typography variant="caption">{windspeed_10m_max}</Typography>
             </ForecastWithToParamsStyled>
           )}
           {temperature_2m_max && (
-            <ForecastWithToParamsStyled>
+            <ForecastWithToParamsStyled isTodayCell={isTodayCell}>
               <ThermostatIcon fontSize="small" />
               <Typography variant="caption">{temperature_2m_max} C</Typography>
             </ForecastWithToParamsStyled>
