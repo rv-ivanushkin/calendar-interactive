@@ -1,6 +1,5 @@
 import React from 'react'
 import { CalendarRow } from './CalendarRow'
-import { useDateWithForecast } from './hooks'
 import { CalendarBodyStyled } from './style'
 import { BaseNode } from './types'
 import { generateRow } from './utils'
