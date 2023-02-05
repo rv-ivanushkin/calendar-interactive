@@ -52,7 +52,11 @@ And also to use:
 
 # Calendar tutorial
 
-- full documentation in this [file]()
+- [Stage 1: create base utils](./docs/tutorial.stage.1.md)
+- [Stage 2: create base constants]()
+- [Stage 3: create base calendar]()
+- [Stage 4: control current date]()
+- [Stage 5: create RTK service]()
 
 # Sources
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
