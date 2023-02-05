@@ -54,7 +54,7 @@ export const useDateWithForecast = ({
 
   useEffect(() => {
     setSkip(
-      compact && Boolean(endDate) && Boolean(startDate) && startDate < now
+      (compact && Boolean(endDate) && Boolean(startDate)) || startDate > now
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compact, startDate, endDate])
