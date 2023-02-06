@@ -19,7 +19,9 @@ And also to use:
   <img src="./docs/screenshots/calendar_with_forecast.png" alt="drawing"/>
 </p>
 
-# [Here's what I've learned while develop an interactive calendar on ReactJs without helped  momentJs and date-fns.](./docs/learned.md)
+
+### [Here's what I've learned while develop an interactive calendar on ReactJs without helped  momentJs and date-fns.](./docs/learned.md)
+
 
 # Technical stack
 
